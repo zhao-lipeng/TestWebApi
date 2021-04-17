@@ -8,7 +8,7 @@ pipeline {
       }
       steps {
         echo 'Hello World'
-        sh 'docker build -t zlp/testwebapi:qq1 .'
+        sh 'docker build -t zlp/testwebapi:qq1 ./TestWebApi'
       }
     }
 
