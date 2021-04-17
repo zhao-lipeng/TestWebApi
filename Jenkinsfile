@@ -2,6 +2,7 @@ pipeline {
   agent any
   stages {
     stage('Example') {
+      agent any
       environment {
         build_tag = ''
       }
@@ -21,7 +22,7 @@ pipeline {
           }
         }
 
-        echo '${env.build_tag}'
+        sh 'echo \'${env.build_tag}\''
       }
     }
 
