@@ -8,21 +8,7 @@ pipeline {
       }
       steps {
         echo 'Hello World'
-        script {
-          def browsers = ['chrome', 'firefox']
-          for (int i = 0; i < browsers.size(); ++i) {
-            echo "Testing the ${browsers[i]} browser"
-          }
-        }
-
-        script {
-          build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
-          if (env.BRANCH_NAME != 'master') {
-            build_tag = "${BRANCH_NAME}-${build_tag}"
-          }
-          echo "${build_tag}"
-        }
-
+        sh 'docker build -t zlp/testwebapi:qq1'
       }
     }
 
