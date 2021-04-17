@@ -21,7 +21,7 @@ pipeline {
           }
         }
 
-        echo '"${env.build_tag}"'
+        echo '${env.build_tag}'
       }
     }
 
