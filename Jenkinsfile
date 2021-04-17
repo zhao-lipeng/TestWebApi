@@ -21,7 +21,7 @@ pipeline {
           }
         }
 
-        echo '$build_tag'
+        echo '"${build_tag}"'
       }
     }
 
