@@ -20,7 +20,10 @@ pipeline {
 
     stage('BuildImage') {
       steps {
-        sh 'docker build -f ./TestWebApi/Dockerfile   -t zlp/testwebapi:\'${build_tag}\' .'
+        script {
+          sh(script: 'docker build -f ./TestWebApi/Dockerfile  -t zlp/testwebapi:${build_tag} .')
+        }
+
       }
     }
 
