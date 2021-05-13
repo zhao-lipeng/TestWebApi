@@ -15,6 +15,10 @@ RUN dotnet build "TestWebApi.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "TestWebApi.csproj" -c Release -o /app/publish
 
+ENV mydb="qq"
+ENV myusr="guest"
+ENV mypwd="guest"
+
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
