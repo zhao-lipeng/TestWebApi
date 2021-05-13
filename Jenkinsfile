@@ -1,16 +1,34 @@
 pipeline {
   agent any
   stages {
-    stage('Example') {
+    stage('Prepare') {
       agent any
       environment {
         build_tag = ''
       }
       steps {
-        echo 'Hello World'
-        sh 'docker build -t zlp/testwebapi:qq1 ./TestWebApi'
+        script {
+          build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+
+          build_tag = "${BRANCH_NAME}-${build_tag}"
+
+          echo "${build_tag}"
+        }
+
       }
     }
 
+    stage('BuildImage') {
+      steps {
+        script {
+          sh(script: "docker build -f ./TestWebApi/Dockerfile  -t zlp/testwebapi:${build_tag} .")
+        }
+
+      }
+    }
+
+  }
+  environment {
+    build_tag = ''
   }
 }
